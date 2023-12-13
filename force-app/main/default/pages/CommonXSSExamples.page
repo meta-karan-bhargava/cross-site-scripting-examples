@@ -1,0 +1,23 @@
+<apex:page controller="CommonXSSExamples" lightningStylesheets="true">
+    <apex:pageBlock>
+        <div id="div1">
+            
+        </div>
+        <div id="div2">
+            
+        </div>
+    </apex:pageBlock>
+    <apex:pageBlock>
+    <div>
+        <a href="salesforce.com" onmouseover="func('{!textField3}');">Hover this link!</a><!-- Issue Fix - need JSENCODE -->
+    </div>
+    </apex:pageBlock>
+    <script>
+    var a = '{!textField1}'; // Issue Fix - need JSENCODE
+    document.getElementById('div1').innerHTML = '{!textField2}'; // Issue Fix - need JSINHTMLENCODE
+    var func = function(value) {
+        value = value + '<b>extra HTML</b>'; // may need custom html encoding for value
+        document.getElementById('div2').innerHTML = value;
+        }
+    </script>
+</apex:page>
