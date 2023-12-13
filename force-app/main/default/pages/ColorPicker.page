@@ -1,0 +1,15 @@
+<apex:page controller="ColorPickerController">
+    <apex:pageBlock id="thePage">
+        
+    <style type="text/css">
+        p { font-weight: bold; }
+        p { background-color: {!colorProp}; }
+    </style>
+
+    <p>You need to change this background to a primary color!</p>
+    </apex:pageBlock>
+    <apex:form>
+        <apex:inputText label="Enter color string" value="{!colorProp}" />
+        <apex:commandButton value="Set BG color" action="{!setColor}" rerender="thePage"/>
+    </apex:form>
+</apex:page>
