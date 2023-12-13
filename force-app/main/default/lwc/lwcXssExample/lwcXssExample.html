@@ -1,0 +1,27 @@
+<template>
+    <div class="app slds-p-around_x-large slds-card">
+       <h1>Template Demo</h1>
+       <hr>
+       <h1>LWC Iteration</h1><br><!-- Safe -->
+       <ul>
+          <template for:each={demographics} for:item="demographic">
+             <li key={demographic.state}>
+                {demographic.state} (pop: {demographic.population})
+             </li>
+          </template>
+       </ul>
+       <hr>
+
+       <h1>DOM Iteration</h1><br> <!-- DOM Iteration using native JS, unsafe-->
+       <ul class="myList">
+       </ul>
+       <hr>
+
+       <h1>DOM Iteration Manual</h1><br><!-- using lwc:dom="manual", unsafe-->
+       <ul class="container" lwc:dom="manual"></ul>
+       <hr>
+
+       <h1> Lightning formatted rich text</h1><br><!-- HTML links working in lightning formatted rich text may casue url redirection-->
+       <lightning-formatted-rich-text value={richText}></lightning-formatted-rich-text>
+    </div>
+ </template>
