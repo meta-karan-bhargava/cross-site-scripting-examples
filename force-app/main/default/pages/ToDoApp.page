@@ -1,0 +1,43 @@
+<apex:page controller="ToDoController" lightningStylesheets="true" >
+	<script>
+		function confirmWithUser(isComplete) 
+		{
+			var confirmMsg = 'Mark';
+			if(isComplete === true)
+				confirmMsg += ' as incomplete?';
+			else
+				confirmMsg += ' as complete?'
+
+		 	return confirm(confirmMsg);   
+		}
+	</script>
+
+	<apex:sectionHeader title="Manage Tasks"/>
+	<apex:form id="form">
+		<apex:pageMessages />
+		<apex:outputPanel >
+			<apex:pageBlock >
+				<apex:pageBlockSection columns="1">
+					<apex:inputTextarea html-maxlength="50" rows="2" cols="100" value="{!newItem.Summary__c}" />
+				</apex:pageBlockSection>
+				<apex:pageBlockButtons location="bottom">
+					<apex:commandButton value="Add Item" action="{!saveItem}" rerender="form" styleClass="slds-vf-button_brand"/>
+				</apex:pageBlockButtons>
+			</apex:pageBlock>
+			<apex:pageBlock >
+				<apex:pageBlockSection columns="1">
+					<apex:actionFunction name="updateItems" action="{!updateItem}" reRender="form">
+						<apex:param name="itemToUpdate" value="" assignTo="{!ItemToUpdate}" />
+					</apex:actionFunction>
+					<apex:repeat var="todo" value="{!ToDoList}">
+						<apex:pageBlockSectionItem >
+							<apex:inputCheckbox value="{!todo.IsComplete}" onclick="if(confirmWithUser( {!todo.IsComplete} )){ updateItems('{!todo.ItemId}'); return false; }">
+							</apex:inputCheckbox>
+							<apex:outputText value="{!todo.Summary}"/>
+						</apex:pageBlockSectionItem>
+					</apex:repeat>
+				</apex:pageBlockSection>
+			</apex:pageBlock>
+		</apex:outputPanel>
+	</apex:form>
+</apex:page>

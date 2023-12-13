@@ -1,0 +1,11 @@
+
+<apex:page standardController="Account">
+  <apex:form>
+    <apex:commandButton rerender="outputIt" value="Update It"/>
+    <apex:inputText value="{!myTextField}"/>
+  </apex:form>
+
+  <apex:outputPanel id="outputIt"> 
+    Value of myTextField is <apex:outputText value="{!myTextField}" escape="false"/>
+  </apex:outputPanel>    
+</apex:page>
