@@ -72,9 +72,6 @@ public with sharing class ToDoController {
 
 		public ToDoItem(Id itemId, String summary, Boolean isComplete){
 			this.ItemId = itemId;
-			if(isComplete) {
-				summary = '<s>' + summary + '</s>';
-			}
 			this.Summary = summary;
 			this.IsComplete = isComplete;
 		}

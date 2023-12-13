@@ -14,7 +14,7 @@
 
 	<apex:sectionHeader title="Manage Tasks"/>
 	<apex:form id="form">
-		<apex:pageMessages />
+		<apex:pageMessages escape="false"/>
 		<apex:outputPanel >
 			<apex:pageBlock >
 				<apex:pageBlockSection columns="1">
@@ -33,7 +33,7 @@
 						<apex:pageBlockSectionItem >
 							<apex:inputCheckbox value="{!todo.IsComplete}" onclick="if(confirmWithUser( {!todo.IsComplete} )){ updateItems('{!todo.ItemId}'); return false; }">
 							</apex:inputCheckbox>
-							<apex:outputText value="{!todo.Summary}"/>
+							<apex:outputText value="{!todo.Summary}" escape="false" />
 						</apex:pageBlockSectionItem>
 					</apex:repeat>
 				</apex:pageBlockSection>
